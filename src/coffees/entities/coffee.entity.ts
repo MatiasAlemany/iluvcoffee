@@ -15,6 +15,9 @@ export class Coffee {
   @Column() // sql column === "name"
   name: string;
 
+  @Column({nullable: true}) // sql column === "description"
+  description: string;
+
   @Column() // sql column === "brand"
   brand: string;
 
