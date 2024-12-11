@@ -30,7 +30,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document)
 
   app.useGlobalFilters(new HttpExceptionFilter);
-  app.useGlobalInterceptors(new WrapResponseInterceptor(), new TimeoutInterceptor());
+  app.useGlobalInterceptors(new WrapResponseInterceptor()) // new TimeoutInterceptor());
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
