@@ -6,8 +6,9 @@ import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto/paginati
 import { REQUEST } from '@nestjs/core';
 import { Public } from 'src/common/decorators/public.decorator';
 import { Protocol } from 'src/common/decorators/protocol.decorator';
+import { ApiForbiddenResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-
+@ApiTags('coffees')
 @Controller('coffees')
 export class CoffeesController {
     constructor(private readonly coffeesService: CoffeesService,
@@ -15,6 +16,7 @@ export class CoffeesController {
     ) {}
 
     //Static routes
+    @ApiForbiddenResponse({ description: 'Forbidden.'})
     @Public()
     @UsePipes(ValidationPipe)
     @Get()
@@ -49,6 +51,5 @@ export class CoffeesController {
     //DELETE - Remove
     @Delete(':id')
     remove(@Param('id') id: string) {
-        return this.coffeesService.remove(id)}
-        
+        return this.coffeesService.remove(id)}        
 }
